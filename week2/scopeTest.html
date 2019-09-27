@@ -7,9 +7,91 @@
 <body>
     <script>
 
+        // (() => {
+        //     let i = 1;
 
+        //     document.writeln("i ist " + i);
+        // })()
 
+       // document.writeln("i ist " + i);
 
+        // const id = x => x;
+        // const fst = x => y => x;
+        // const plus = x => y => x + y;
+        // const foo = plus
+
+        // document.writeln("foo(2)(3) ist " + foo(2)(3));
+        // document.writeln("fst(2)(3) ist " + fst(2)(3));
+
+        // function two(){
+        //     x = 2;
+        //     return x;
+        // }
+        // two();
+
+        // try{
+        //     x;
+        //     document.writeln(true)
+        // } catch (e){
+        //     document.writeln(false)
+        // }
+
+        // function two(){
+        //     x = 2;
+        //     return x;
+        // }
+
+        // try{
+        //     x;
+        //     document.writeln(true)
+        // } catch (e){
+        //     document.writeln(false)
+        // }
+
+        // let x = 0;
+        // (() => {
+        //     let x = 2;
+        //     return x;
+        // })();
+
+        // try{
+        //     document.writeln(x === 0)
+        // } catch (e){
+        //     document.writeln(false)
+        // }
+
+        // x = 0;
+        // (() => {
+        //     x = 2;
+        //     return x;
+        // })();
+
+        // try{
+        //     document.writeln(x === 0)
+        // } catch (e){
+        //     document.writeln(false)
+        // }
+
+        // let x = 0;
+        // (function(){
+        //     let x = 2;
+        //     return x;
+        // })();
+
+        // try{
+        //     document.writeln(x === 0)
+        // } catch (e){
+        //     document.writeln(false)
+        // }
+
+        const id = y => y;
+        const fst = x => y => x;
+
+        const test = x => y => y;
+        //SOLUTION
+        const snd = fst => id;
+
+        document.writeln(test(1)(2) + " / " + snd(1)(2))
 
     </script>
 </body>
