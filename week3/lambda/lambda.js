@@ -1,4 +1,23 @@
+const id = x => x;
 
+const konst = x => y => x;
+
+const snd = konst(id);
+
+const T = konst;
+const F = snd;
+const M = f => f(f); // Mockingbird
+
+const and = x => y => x(y)(x);
+const or  = M;
+
+const Pair = first => last=> selector => selector(first)(last);
+const firstname = konst;
+const lastname  = snd;
+
+const Left   = x => fl => fr => fl(x);
+const Right  = x => fl => fr => fr(x);
+const either = id ;
 
 
 // ----- special -----
