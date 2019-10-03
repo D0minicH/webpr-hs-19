@@ -89,7 +89,7 @@
 
         const test = x => y => y;
         //SOLUTION
-        const snd = fst => id;
+        const snd = fst(id);
 
         document.writeln(test(1)(2) + " / " + snd(1)(2))
 

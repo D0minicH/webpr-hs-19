@@ -10,9 +10,15 @@ const snd  = konst(id);
 const T = fst;
 const F = snd;
 
+//and
 const and = p => q => p(q)(p);
+//const and = p => q => p(q(T)(F)) (p(F)(F));
 
-const M   = f => f(f);
+//or
+const M   = f => f(f); //Mockingbird
+//const or  = x => y => x(x(T)(T)) (y(T)(F));
+//const or  = x => y => x(x)(y);
+//const or  = x => x(x); --> gleich wie M
 const or  = M;
 
 const Pair = x => y => selector => selector(x)(y);
@@ -27,7 +33,6 @@ const tage       = x => y => z => z;
 
 
 // Either
-
 const Left   = x => f => g => f(x);
 const Right  = x => f => g => g(x);
 const either = e => f => g => e (f) (g);

@@ -65,14 +65,14 @@ ok.push( dierk(lastname)  === "König");
 
 // either
 
-const safeDiv = num => divisor =>
-    divisor === 0
-    ? Left("schlecht!")
-    : Right(num / divisor);
+// const safeDiv = num => divisor =>
+//     divisor === 0
+//     ? Left("schlecht!")
+//     : Right(num / divisor);
 
-either( safeDiv(1)(0)  )
-      (console.error)
-      (console.log);
+// either( safeDiv(1)(0)  )
+//       (console.error)
+//       (console.log);
 
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);
 // const cash = Cash ();
@@ -92,15 +92,15 @@ either( safeDiv(1)(0)  )
 // ok.push( doPay(pal ) === "pal: Dierk");
 
 // test result report
-if (ok.every(elem => elem)) {
-  document.writeln("All " + ok.length + " tests ok.");
-} else {
-  document.writeln("Not all tests ok! Details:");
-  for (let i = 0; i < ok.length; i++) {
-    if (ok[i]) {
-      document.writeln("Test " + i + " ok");
-    } else {
-      document.writeln("Test " + i + " failed");
-    }
-  }
-}
+// if (ok.every(elem => elem)) {
+//   document.writeln("All " + ok.length + " tests ok.");
+// } else {
+//   document.writeln("Not all tests ok! Details:");
+//   for (let i = 0; i < ok.length; i++) {
+//     if (ok[i]) {
+//       document.writeln("Test " + i + " ok");
+//     } else {
+//       document.writeln("Test " + i + " failed");
+//     }
+//   }
+// }
