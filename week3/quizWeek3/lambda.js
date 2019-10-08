@@ -99,11 +99,11 @@ const eResultResult = safeDiv(4)(2)
 /***************************************************************************/
 //SOLUTION 'either' enforces error handling
 const eShow = division => either(division)
-                            (msg => document.writeln(msg))
-                            (val => document.writeln("Result is " + val))
+                            (msg => (msg))
+                            (val => ("Result is: " + val))
 /***************************************************************************/
-eShow(eResultFail);
-eShow(eResultResult);
+document.writeln(eShow(eResultFail));
+document.writeln(eShow(eResultResult));
 
 // either(eResult)
 //       (msg => document.writeln(msg))
