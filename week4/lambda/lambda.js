@@ -8,7 +8,7 @@ const konst = x => y => x;
 const F = konst (id);
 const T = konst;
 
-const Pair = x => y => f => f(x)(y);
+const pair = x => y => f => f(x)(y);
 const fst  = p => p(T);
 const snd  = p => p(F);
 
