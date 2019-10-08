@@ -1,14 +1,12 @@
-// atoms
-const id    = x =>      x;
+const id = x => x;
+
 const konst = x => y => x;
 
+const snd = konst(id);
 
-// derived
-const fst  = konst;
-const snd  = konst(id);
-
-const T = fst;
+const T = konst;
 const F = snd;
+const M = f => f(f); // Mockingbird
 
 //and
 const and = p => q => p(q)(p);
@@ -21,14 +19,13 @@ const M   = f => f(f); //Mockingbird
 //const or  = x => x(x); --> gleich wie M
 const or  = M;
 
-const Pair = x => y => selector => selector(x)(y);
-const firstname = fst;
+const Pair = first => last=> selector => selector(first)(last);
+const firstname = konst;
 const lastname  = snd;
 
-const Triple = x => y => z => f => f(x)(y)(z);
-const tfirstname = x => y => z => x;
-const tlastname  = x => y => z => y;
-const tage       = x => y => z => z;
+const Left   = x => fl => fr => fl(x);
+const Right  = x => fl => fr => fr(x);
+const either = id ;
 
 
 
