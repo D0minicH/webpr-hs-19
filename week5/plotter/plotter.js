@@ -9,11 +9,13 @@ function start() {
     const canvas       = document.getElementById('canvas');
     const context      = canvas.getContext("2d");
 
-    // todo: how to display?
+    const f = () => Function('x', 'return ' + userFunction.value);
+    display(context, f());
 
+    userFunction.onchange = _ => display(context, f());
 }
 
-function display(context, f) {
+function display(context, func) {
     // clear
     context.fillStyle = "papayawhip";
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -23,11 +25,11 @@ function display(context, f) {
 
     context.fillStyle = "black";
     context.beginPath();
-    context.moveTo(normx(minX), normy(f(minX)));
+    context.moveTo(normx(minX), normy(func(minX)));
 
     const stride = (maxX - minX) / 100; // 100 Stützstellen
     for (let x = minX; x <= maxX; x += stride) {
-        context.lineTo(normx(x), normy(f(x)));
+        context.lineTo(normx(x), normy(func(x)));
         context.stroke();
     }
 }

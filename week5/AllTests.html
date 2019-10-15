@@ -6,14 +6,28 @@
 </head>
 <body>
 
-    <script src="function/function.js"></script>
-    <script src="function/functionTest.js"></script>
+    <!-- Dynamic test loading (Hacky!) -->
+    <script>
+        const modules = [
+            'function',
+            'lambda',
+            'snake'
+        ];
+        modules.forEach(module => {
+            document.writeln(`<script src="${module}/${module}.js"><`+'/script>');
+            document.writeln(`<script src="${module}/${module}Test.js"><`+'/script>');
+
+        });
+    </script>
+
+    <!-- <script src="function/function.js"></script> -->
+    <!-- <script src="function/functionTest.js"></script>
 
     <script src="lambda/lambda.js"></script>
     <script src="lambda/lambdaTest.js"></script>
 
     <script src="snake/snake.js"></script>
-    <script src="snake/snakeTest.js"></script>
+    <script src="snake/snakeTest.js"></script> -->
 
 
 </body>
