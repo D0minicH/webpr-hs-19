@@ -6,16 +6,16 @@
 </head>
 <body>
 
-    <!-- Dynamic test loading (Hacky!) -->
     <script>
         const modules = [
             'function',
             'lambda',
-            'snake'
+            'snake',
         ];
-        modules.forEach(module => {
+        modules.forEach( module => {
             document.writeln(`<script src="${module}/${module}.js"><`+'/script>');
             document.writeln(`<script src="${module}/${module}Test.js"><`+'/script>');
+        });
 
         });
     </script>
