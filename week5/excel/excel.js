@@ -23,19 +23,17 @@ function fillTable(container) {
             input.setAttribute("VALUE", Formulae[cellid]);
             input.setAttribute("ID", cellid);
 
-            //input change or onClick
+            //input change onClick
             input.onclick = evt => {
                 input.value = Formulae[cellid];
             }
 
-            input.onclick = evt => {
-                input.value = Formulae[cellid];
-            };
+            // react to changes in input Fields and 
 
             input.onchange = evt => {
                 Formulae[cellid] = input.value;
                 refresh();
-            };
+            }
 
             td.appendChild(input);
             tr.appendChild(td);

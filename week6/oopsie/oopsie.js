@@ -1,16 +1,24 @@
 // "hand-made" object abstraction
 
-const Player = (name) => {   // note that name is immutable!
-    let fallbackIndex = 0;   // local function scope is safe
-    let progressIndex = 0;
+// create a proper Player construction with
+// state:
+//   fallbackIndex = 0 // place to fall back on oopsie
+//   progressIndex = 0 // place having been proceeding to
+// and functions:
+//   proceed(stride) // proceed so many places
+//   fallback()      // "oopsie": go back to last start (fallback position)
+//   turn()          // cash in your win, update fallback position for next turn
+// 
+function Player(diceThrow){
+    fallbackIndex = 0;
+    progressIndex = 0;
     return {
-        getFallbackIndex: () => fallbackIndex,
-        getProgressIndex: () => progressIndex,
-        proceed:      stride => progressIndex += stride,
-        fallback:         () => progressIndex = fallbackIndex,
-        turn:             () => fallbackIndex = progressIndex
+        proceed: (stride) => progressIndex += stride,
+        fallback: () => fallbackIndex,
+        getFallbackIndex:,
+        getProgressIndex: ,
     }
-};
+}
 
 function start() {
     const fields = document.getElementById('fields');
