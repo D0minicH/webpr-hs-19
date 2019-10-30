@@ -11,6 +11,7 @@
 
     (10).times( n => collect.push(n) );
 
+
     ok.push(collect.length === 10);
     ok.push(collect[0] === 0);
     ok.push(collect[9] === 9);
@@ -22,12 +23,14 @@
     let ok = [];
 
 
+    const collect = [];
 
-    const collect = (10).times( n => n+1 );
+    '10'.times( n => collect.push(n) );
+
 
     ok.push(collect.length === 10);
-    ok.push(collect[0] === 1);
-    ok.push(collect[9] === 10);
+    ok.push(collect[0] === 0);
+    ok.push(collect[9] === 9);
 
-    report("util-times", ok);
+    report("string-times", ok);
 }) ();
