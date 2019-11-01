@@ -86,6 +86,46 @@ const Person = name => {
 
 /* Array equivalence */
 
+const xs1 = [1,2,3];
+const ys1 = [1,2,3];
 
+const xs2 = [3,2,1];
+const ys2 = 1;
 
-xs1.eq(ys1) && ! xs2.eq(ys2) && xs3.eq(ys3) && ! xs3.eq(ys4) && ! xs4.eq(ys3);
+const xs3 = [1,'2',3];
+const ys3 = [1,'2',3];
+
+const xs4 = [1,2,3];
+const ys4 = [1,2,3];
+
+Array.prototype.eq = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0; i < this.length; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].equals(array[i]))
+                return false;       
+        }           
+        else if (this[i] !== array[i]) { 
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;   
+        }           
+    }       
+    return true;
+}
+
+// document.writeln(xs1.eq(ys1));
+// document.writeln( ! xs2.eq(ys2));
+// document.writeln(xs3.eq(ys3));
+// document.writeln( ! xs3.eq(ys4));
+// document.writeln( ! xs4.eq(ys3));
+
+document.writeln(xs1.eq(ys1) && ! xs2.eq(ys2) && xs3.eq(ys3) && ! xs3.eq(ys4) && ! xs4.eq(ys3));

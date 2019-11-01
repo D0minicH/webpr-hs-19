@@ -76,7 +76,6 @@
     report("inheritance-delegate", ok);
 })();
 
-// todo: can you make the dk object an instanceof Person?
 ( () => {
     let ok = [];
 
@@ -87,7 +86,8 @@
             work:    () => worklog.push(worker.work())
         };
 
-        //...
+        // make the dk object an instanceof Person
+        Object.setPrototypeOf(result, Person.prototype);
 
         return result
     }
