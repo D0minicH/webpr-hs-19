@@ -23,7 +23,8 @@ test("util-times1", assert => {
 
     ok.push(collect.length === 10);
     ok.push(collect[0] === 1);
-    ok.push(collect[9] === 10);
+
+    ok.push(collect[9] === 11);
 
     report("util-times2", ok);
 }) ();

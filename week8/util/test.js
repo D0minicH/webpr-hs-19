@@ -41,7 +41,7 @@ function report(origin, ok) {
     const extend = 20;
     if ( ok.every( elem => elem) ) {
         document.writeln(" "+ padLeft(ok.length, 3) +" tests in " + padRight(origin, extend) + " ok.");
-        return;
+        return; // guard clause
     }
     let reportLine = "    Failing tests in " + padRight(origin, extend);
     bar(reportLine.length);
