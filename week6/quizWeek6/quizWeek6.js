@@ -107,7 +107,7 @@ Array.prototype.eq = function (array) {
     if (this.length != array.length)
         return false;
 
-    for (const i = 0; i < this.length; i++) {
+    for (let i = 0; i < this.length; i++) {
         // Check if we have nested arrays
         if (this[i] instanceof Array && array[i] instanceof Array) {
             // recurse into the nested arrays

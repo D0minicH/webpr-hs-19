@@ -188,14 +188,17 @@ const doStuff = x => {
     const second = double(first)
     return third = double (second)
 }
-document.writeln(doStuff(1))
+//document.writeln(doStuff(1))
 
 const add = x => x + 2
 const mult = x => x * 4
 
-function then(functionToCombine){
-
+Function.prototype.then = functionToCombine => {
+    let func;
+    functionToCombine(func)
+    return func;
 }
 
-document.writeln((1 + 2) * 4 + 2)
-//document.writeln(add.then(mult).then(add) (1) === (1 + 2) * 4 + 2)
+//document.writeln((1 + 2) * 4 + 2)
+document.writeln(add.then(add).then(add) (1))
+// document.writeln(add.then(mult).then(add) (1) === (1 + 2) * 4 + 2)
