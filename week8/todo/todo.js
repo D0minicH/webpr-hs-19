@@ -1,3 +1,4 @@
+let container = undefined;
 
 let container;
 const row = `
