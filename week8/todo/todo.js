@@ -1,6 +1,6 @@
-let container = undefined;
 
 let container;
+
 const row = `
             <tr>
                 <td><input type="text"></td>
