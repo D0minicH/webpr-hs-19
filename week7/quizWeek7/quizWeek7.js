@@ -193,19 +193,21 @@ const doStuff = x => {
 const add = x => x + 2
 const mult = x => x * 4
 
-function then(functionToCombine){
-    functionToCombine.prototype.combineFuncs = function(){
-        return combineFuncs(functionToCombine)
-    }
-    return functionToCombine;
-}
-
-// Function.prototype.then = functionToCombine => {
-//     let func;
-//     functionToCombine(func)
-//     return func;
+// function then(functionToCombine){
+//     functionToCombine.prototype.combineFuncs = function(){
+//         return combineFuncs(functionToCombine)
+//     }
+//     return functionToCombine;
 // }
 
-//document.writeln((1 + 2) * 4 + 2)
-document.writeln(add.then(add).then(add) (1))
+function func(funcToAdd){
+    this.addfunc = funcToAdd;
+}
+
+func.prototype.then = function(functionToCombine){
+    return this.addfunc(functionToCombine)
+}
+
+// document.writeln((1 + 2) * 4 + 2)
+document.writeln(add.then(add).then(add) (1)) //should be 14
 // document.writeln(add.then(mult).then(add) (1) === (1 + 2) * 4 + 2)
