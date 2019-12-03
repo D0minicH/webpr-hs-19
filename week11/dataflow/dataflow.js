@@ -3,23 +3,22 @@
 
 // execute asynchronous tasks in strict sequence, aka "reactive stream", "flux architecture"
 const Scheduler = () => {
-
+    let inProcess = false;
     const tasks = [];
     function process() {
-
-        if (tasks.length === 0) return;
-
+        if (inProcess) { return; }
+        if (tasks.length === 0) { return; } // guard clause
+        inProcess = true;
         const task = tasks.pop();
 
         let wasOk = false;
         const ok = () => wasOk = true;
-
-        task(ok);
-
-        if (wasOk) {
-            process()
-        }
-
+        const doit = new Promise( (resolve, reject) => {
+            task(resolve);
+        }). then ( () => {
+            inProcess = false;
+            process();
+        });
     }
     function add(task) {
         tasks.unshift(task);
@@ -35,13 +34,9 @@ const Scheduler = () => {
 // a dataflow abstraction that is not based on concurrency but on laziness
 
 const DataFlowVariable = howto => {
-
-    return () => {
-        // todo: how do we cache the value ???
-
-        // todo: how do we set the value ???
-
-        // return value;
-    }
+    let value = undefined;
+    return () => undefined === value
+                 ? value = howto()
+                 : value;
 };
 
