@@ -204,7 +204,7 @@ function func(funcToAdd){
     this.addfunc = funcToAdd;
 }
 
-func.prototype.then = function(functionToCombine){
+Function.prototype.then = function(functionToCombine){
     return this.addfunc(functionToCombine)
 }
 
