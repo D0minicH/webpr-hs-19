@@ -193,21 +193,26 @@ const doStuff = x => {
 const add = x => x + 2
 const mult = x => x * 4
 
-// function then(functionToCombine){
-//     functionToCombine.prototype.combineFuncs = function(){
-//         return combineFuncs(functionToCombine)
-//     }
-//     return functionToCombine;
+// Lösung Gian
+// Function.prototype.then = function(right) {
+//     const left = this;
+//     return function (arg) {
+//         return right(left(arg));
+//     };
+// }
+// Function.prototype.then = function(f) {
+//     return function (arg) {
+//         return f(this(arg));
+//     };
 // }
 
-function func(funcToAdd){
-    this.addfunc = funcToAdd;
-}
-
 Function.prototype.then = function(functionToCombine){
-    return this.addfunc(functionToCombine)
+    const previousRes = this;
+    return function(argument) {
+        return functionToCombine(previousRes(argument));
+    };
 }
 
 // document.writeln((1 + 2) * 4 + 2)
-document.writeln(add.then(add).then(add) (1)) //should be 14
-// document.writeln(add.then(mult).then(add) (1) === (1 + 2) * 4 + 2)
+document.writeln(add.then(add).then(add) (1)) //should be 7
+document.writeln(add.then(mult).then(add) (1) === (1 + 2) * 4 + 2)

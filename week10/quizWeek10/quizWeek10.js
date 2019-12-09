@@ -297,11 +297,11 @@
 
 const NullSafe = x => {
     const isNullSafe = y => y && y.then;
-    const maywrap    = y => isNullSafe(y) ? y : new Promise(a => a(y)) ; // if y is not NullSafe yet, make it so
+    const maywrap    = y => isNullSafe(y) ? y : NullSafe(y) ; // todo: if y is not NullSafe yet, make it so
     return {
-       then: fn => {
-          let res = maywrap(x).then(a => a === null ? a.then : fn(a)).catch(() => {});
-          return NullSafe(res);
+       then: fn => { 
+           let res = maywrap(x).then(a => a === null ? a.then : fn(a)).catch(() => {});
+           return res;
         }
     }
 };
@@ -319,9 +319,10 @@ NullSafe(2).then( x => null).then(console.log);  // will not call the log
 x_ = 1;
 y_ = 2;
 
-NullSafe(x_)
-  .then( x => x*2)          // must auto-promote
-  .then( x => NullSafe(x))  // must not auto-promote
-  .then( x => y_ = x + 1)   // store value, check no double promotion
-  .then( x => null)         // jump over rest
-  .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1
+document.writeln(
+    NullSafe(x_)
+    .then( x => x*2)          // must auto-promote
+    .then( x => NullSafe(x))  // must not auto-promote
+    .then( x => y_ = x + 1)   // store value, check no double promotion
+    .then( x => null)         // jump over rest
+    .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1)
