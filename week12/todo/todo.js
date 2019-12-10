@@ -22,16 +22,19 @@ const TodoController = () => {
         todoModel.add(newTodo);
         return newTodo;
     };
-
+    const scheduler = Scheduler();
     const addFortuneTodo = () => {
         const newTodo = Todo();
         todoModel.add(newTodo);
         newTodo.setText("...");
 
-        fortuneService( text => {
-            console.log(text);
-            newTodo.setText(text);
+        scheduler.add( ok => {
+            fortuneService( text => {
+                newTodo.setText(text);
+                ok();
+            });
         });
+
 
         return newTodo;
     };
