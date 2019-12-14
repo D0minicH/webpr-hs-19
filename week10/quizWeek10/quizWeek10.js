@@ -299,9 +299,10 @@ const NullSafe = x => {
     const isNullSafe = y => y && y.then;
     const maywrap    = y => isNullSafe(y) ? y : NullSafe(y) ; // todo: if y is not NullSafe yet, make it so
     return {
-       then: fn => { 
-           let res = maywrap(x).then(a => a === null ? a.then : fn(a)).catch(() => {});
-           return res;
+       then: fn => {
+           return x => x === null ? maywrap(x) : fn(x);
+        //    let res = maywrap(x).then(a => a === null ? a.then : fn(a)).catch(() => {});
+        //    return res;
         }
     }
 };
