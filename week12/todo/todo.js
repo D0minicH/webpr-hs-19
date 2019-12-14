@@ -3,7 +3,7 @@
 const TodoController = () => {
 
     const Todo = () => {                                // facade
-        const textAttr = Observable("text");            // we current don't expose it as we don't use it elsewhere
+        const textAttr = Observable("...");            // we current don't expose it as we don't use it elsewhere
         const doneAttr = Observable(false);
         return {
             getDone:       doneAttr.getValue,
@@ -22,11 +22,30 @@ const TodoController = () => {
         todoModel.add(newTodo);
         return newTodo;
     };
+    const scheduler = Scheduler();
+    const addFortuneTodo = button => {
+        button.disabled = true;
+        const newTodo = Todo();
+        todoModel.add(newTodo);
+        newTodo.setText("...");
+
+        scheduler.add( ok => {
+            fortuneService( text => {
+                newTodo.setText(text);
+                button.disabled = false;
+                ok();
+            });
+        });
+
+
+        return newTodo;
+    };
 
     return {
         numberOfTodos:      todoModel.count,
         numberOfopenTasks:  () => todoModel.countIf( todo => ! todo.getDone() ),
         addTodo:            addTodo,
+        addFortuneTodo:     addFortuneTodo,
         removeTodo:         todoModel.del,
         onTodoAdd:          todoModel.onAdd,
         onTodoRemove:       todoModel.onDel,
@@ -62,6 +81,8 @@ const TodoItemsView = (todoController, rootElement) => {
             rootElement.removeChild(checkboxElement);
             removeMe();
         } );
+
+        todo.onTextChanged( _ => inputElement.value = todo.getText() );
 
         rootElement.appendChild(deleteButton);
         rootElement.appendChild(inputElement);
