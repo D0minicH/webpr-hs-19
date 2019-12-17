@@ -5,7 +5,7 @@ const Formulae =  {
     A3: 'n(A1) + n(A2)', B3: 'n(B1) + n(B2)',  C3: 'n(C1) + n(C2)',
 };
 
-// todo: we need some storage for the data flow variables that back the cell values
+const DFVs = {}; // lazy cache for the backing data flow variables
 
 const cols = ["A","B","C"];
 const rows = ["1","2","3"];
@@ -24,14 +24,11 @@ function fillTable(container) {
             let cellid = "" + col + row;
             input.setAttribute("VALUE", Formulae[cellid]);
             input.setAttribute("ID", cellid);
-
-            // todo: set the cell value into the respective data flow variable
+            DFVs[cellid] = df(input);
 
             input.onchange = evt => {
                 Formulae[cellid] = input.value;
-
-                // todo: set the cell value into the respective data flow variable
-
+                DFVs[cellid] = df(input);
                 refresh();
             };
             input.onclick  = evt => input.value = Formulae[cellid] ;
@@ -54,14 +51,14 @@ function refresh() {
 }
 
 function df(input) {
-
-    // todo: return a new data flow variable that captures the numeric value of the input field's formula
-
+    return DataFlowVariable ( () => {
+        // uncomment to inspect which DFVs are evaluated when
+        // console.log("evaluating: cell " + input.id + " has value " + input.value +", formula " + Formulae[input.id]);
+        return Number( eval(Formulae[input.id]))
+    } ) ;
 }
 
 // get the numerical value of an input element's value attribute
 function n(input) {
-
-    // todo: return the value of the data flow variable that backs the input field
-
+    return DFVs[input.id]();
 }
