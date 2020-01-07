@@ -23,13 +23,13 @@
 
 /***********************************************/
 
-// function handle(callback) {
-//     const result = [];
-//     callback(result);
-//     return result;
-// }
+function handle(callback) {
+    const result = [];
+    callback(result);
+    return result;
+}
 
-// document.writeln( handle( it => it.push(1) ).length === 1)
+document.writeln( handle( it => it.push(1) ).length === 1)
 
 /***********************************************/
 
@@ -264,6 +264,6 @@ const Observable = value => {
 
 /***********************************************/
 
-const idPromise = x => new Promise( resolve => resolve(x));
+// const idPromise = x => new Promise( resolve => resolve(x));
 
-document.writeln( idPromise(1) );
+// document.writeln( idPromise(1) );

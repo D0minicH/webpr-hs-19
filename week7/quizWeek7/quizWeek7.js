@@ -200,11 +200,6 @@ const mult = x => x * 4
 //         return right(left(arg));
 //     };
 // }
-// Function.prototype.then = function(f) {
-//     return function (arg) {
-//         return f(this(arg));
-//     };
-// }
 
 Function.prototype.then = function(functionToCombine){
     const previousRes = this;
