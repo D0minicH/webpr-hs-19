@@ -114,6 +114,12 @@ crazySuite.add("compare", assert => {
     assert.is( NaN === NaN ,            false);  // !!!
     assert.is( NaN === !NaN ,            false);  // !!!
 
+    assert.is( NaN === NaN, false);
+    assert.is( NaN === !NaN, false);
+
+    //Prüft man so:
+     if (Number.isNaN(x)){}
+
 });
 
 
